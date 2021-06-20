@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class ArmController : MonoBehaviour {
     // string of which arm to control. Valid values are "left" and "right"
@@ -9,10 +12,14 @@ public class ArmController : MonoBehaviour {
     //websocket client connected to ROS network
     private WebsocketClient wsc;
     TFListener TFListener;
+    public Transform root;
     //scale represents how resized the virtual robot is
     float scale;
+    private ActionBasedController controller;
 
-    void Start() {
+    void Start()
+    {
+        controller = GetComponent<ActionBasedController>();
         // Get the live websocket client
         wsc = GameObject.Find("WebsocketClient").GetComponent<WebsocketClient>();
 
@@ -24,11 +31,13 @@ public class ArmController : MonoBehaviour {
         // Asychrononously call sendControls every .1 seconds
         InvokeRepeating("SendControls", .1f, .1f);
 
-        if (arm == "left") {
+        if (arm == "left")
+        {
             grip_label = "Left Grip";
             trigger_label = "Left Trigger";
         }
-        else if (arm == "right") {
+        else if (arm == "right") 
+        {
             grip_label = "Right Grip";
             trigger_label = "Right Trigger";
         }
@@ -40,15 +49,16 @@ public class ArmController : MonoBehaviour {
         scale = TFListener.scale;
 
         //Convert the Unity position of the hand controller to a ROS position (scaled)
-        Vector3 outPos = UnityToRosPositionAxisConversion(GetComponent<Transform>().position) / scale;
+        Vector3 outPos = UnityToRosPositionAxisConversion(transform.position) / scale;
         //Convert the Unity rotation of the hand controller to a ROS rotation (scaled, quaternions)
-        Quaternion outQuat = UnityToRosRotationAxisConversion(GetComponent<Transform>().rotation);
+        Quaternion outQuat = UnityToRosRotationAxisConversion(transform.rotation);
         //construct the Ein message to be published
         string message = "";
         //Allows movement control with controllers if menu is disabled
 
         //if deadman switch held in, move to new pose
-        if (Input.GetAxis(grip_label) > 0.5f) {
+        if (controller.selectAction.action.ReadValue<float>() > 0.5f)
+        {
             //construct message to move to new pose for the robot end effector 
             message = outPos.x + " " + outPos.y + " " + outPos.z + " " +
             outQuat.x + " " + outQuat.y + " " + outQuat.z + " " + outQuat.w + " moveToEEPose";
@@ -56,7 +66,8 @@ public class ArmController : MonoBehaviour {
         }
 
         //If trigger pressed, open the gripper. Else, close gripper
-        if (Input.GetAxis(trigger_label) > 0.5f) {
+        if (controller.activateAction.action.ReadValue<float>() > 0.5f)
+        {
             message += " openGripper ";
         }
         else {
@@ -69,7 +80,7 @@ public class ArmController : MonoBehaviour {
 
     //Convert 3D Unity position to ROS position 
     Vector3 UnityToRosPositionAxisConversion(Vector3 rosIn) {
-        return new Vector3(-rosIn.x, -rosIn.z, rosIn.y);
+        return new Vector3(-rosIn.x + root.position.x, -rosIn.z + root.position.z, rosIn.y - root.position.y);
     }
 
     //Convert 4D Unity quaternion to ROS quaternion

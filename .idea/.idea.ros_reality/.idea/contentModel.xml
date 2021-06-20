@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Demo\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Demo\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_ros_reality.2099884191.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Demo\Documents\AvatARR\ros_reality" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="PointCloundAdjuster.cs" t="Include" />
+        <e p="Resources" t="Include">
+          <e p="URDFs" t="Include">
+            <e p="Baxter" t="Include">
+              <e p="standard_baxter_urdf.xml" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="ArmController.cs" t="Include" />
+          <e p="CameraListener.cs" t="Include" />
+          <e p="DepthImageListener.cs" t="Include" />
+          <e p="DepthRosGeometryView.cs" t="Include" />
+          <e p="DepthRosTextureView.cs" t="Include" />
+          <e p="EinMenuScript.cs" t="Include" />
+          <e p="IKStatus.cs" t="Include" />
+          <e p="ProjectorListener.cs" t="Include" />
+          <e p="TFListener.cs" t="Include" />
+          <e p="TrajectoryController.cs" t="Include" />
+          <e p="URDFParser.cs" t="Include" />
+          <e p="WebsocketClient.cs" t="Include" />
+        </e>
+        <e p="Shaders" t="Include">
+          <e p="DepthGeometryJoinedQuads.shader" t="Include" />
+          <e p="DepthGeometryPointSprites.shader" t="Include" />
+          <e p="ericshader.shader" t="Include" />
+          <e p="KinectCommon.cginc" t="Include" />
+          <e p="ProjectionShader.shader" t="Include" />
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="ros_reality.sln" t="IncludeFlat" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

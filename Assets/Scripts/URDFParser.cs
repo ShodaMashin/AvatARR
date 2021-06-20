@@ -34,6 +34,11 @@ public class URDFParser : MonoBehaviour {
 
                 Debug.Log(meshfile);
                 instance = Instantiate(Resources.Load(meshfile, typeof(GameObject))) as GameObject;
+                Camera cam = instance.GetComponentInChildren<Camera>();
+                if (cam != null)
+                {
+                    Destroy(cam);
+                }
                 instance.name = pair.Key;
             }
             else {

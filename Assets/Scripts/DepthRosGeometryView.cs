@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Linq;
+using System.Threading;
+using UnityEditor.PackageManager;
 
 public class DepthRosGeometryView : MonoBehaviour {
 
@@ -27,13 +30,22 @@ public class DepthRosGeometryView : MonoBehaviour {
         depthTexture = new Texture2D(width, height, TextureFormat.R16, false);
         colorTexture = new Texture2D(2, 2);
 
-
         wsc = GameObject.Find("WebsocketClient").GetComponent<WebsocketClient>();
-        depthTopic = "kinect2/sd/image_depth_rect_throttle";
-        colorTopic = "kinect2/sd/image_color_rect/compressed_throttle";
-        wsc.Subscribe(depthTopic, "sensor_msgs/Image", compression, framerate);
-        wsc.Subscribe(colorTopic, "sensor_msgs/CompressedImage", compression, framerate);
+        depthTopic = "h9camera/sd/image_depth_rect";
+        colorTopic = "h9camera/sd/image_color_rect/compressed";
+        SubscribeDepth();
+        SubscribeColor();
         InvokeRepeating("UpdateTexture", 0.1f, 0.1f);
+    }
+
+    void SubscribeDepth()
+    {
+        wsc.Subscribe(depthTopic, "sensor_msgs/Image", compression, framerate);
+    }
+
+    void SubscribeColor()
+    {
+        wsc.Subscribe(colorTopic, "sensor_msgs/CompressedImage", compression, framerate);
     }
 
     // Update is called once per frame
@@ -49,7 +61,12 @@ public class DepthRosGeometryView : MonoBehaviour {
 
         }
         catch (Exception e) {
-            Debug.Log(e.ToString());
+            Debug.LogError(e.ToString());
+            if (!wsc.messages.Keys.Contains(depthTopic))
+            {
+                SubscribeDepth();
+                return;
+            }
         }
 
         try {
@@ -59,8 +76,12 @@ public class DepthRosGeometryView : MonoBehaviour {
             colorTexture.Apply();
         }
         catch (Exception e) {
-            Debug.Log(e.ToString());
-            return;
+            Debug.LogError(e.ToString());
+            if (!wsc.messages.Keys.Contains(colorTopic))
+            {
+                SubscribeColor();
+                return;
+            }
         }
     }
 
@@ -73,6 +94,6 @@ public class DepthRosGeometryView : MonoBehaviour {
         m = Matrix4x4.TRS(this.transform.position, this.transform.rotation, this.transform.localScale);
         Material.SetMatrix("transformationMatrix", m);
 
-        Graphics.DrawProcedural(MeshTopology.Points, 512 * 424, 1);
+        Graphics.DrawProceduralNow(MeshTopology.Points, 512 * 424, 1);
     }
 }

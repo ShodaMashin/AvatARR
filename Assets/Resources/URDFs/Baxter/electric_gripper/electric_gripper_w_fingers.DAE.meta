@@ -1,49 +1,130 @@
 fileFormatVersion: 2
-guid: a2aa5451f2ddaa84c8a763a38b53e895
-timeCreated: 1482180202
+guid: c9297052414be334cb5a585e7cc8d3c5
+timeCreated: 1620109614
 licenseType: Free
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 22
   fileIDToRecycleName:
     100000: _0030517_001
-    100002: _0030517_001_MeshPart0
-    100004: _0030517_001_MeshPart1
-    100006: Camera
-    100008: //RootNode
-    100010: Lamp
+    100002: Camera
+    100004: //RootNode
+    100006: Lamp
     400000: _0030517_001
-    400002: _0030517_001_MeshPart0
-    400004: _0030517_001_MeshPart1
-    400006: Camera
-    400008: //RootNode
-    400010: Lamp
-    2300000: _0030517_001_MeshPart0
-    2300002: _0030517_001_MeshPart1
-    3300000: _0030517_001_MeshPart0
-    3300002: _0030517_001_MeshPart1
-    4300000: _0030517_001_MeshPart0
-    4300002: _0030517_001_MeshPart1
+    400002: Camera
+    400004: //RootNode
+    400006: Lamp
+    2000000: Camera
+    2100000: Material_001_005
+    2100002: Material_001_004
+    2100004: Shape_077
+    2100006: Shape_076
+    2100008: Shape_075
+    2100010: Shape_074
+    2100012: Shape_073
+    2100014: Shape_072
+    2100016: Shape_071
+    2100018: Shape_070
+    2100020: Shape_069
+    2100022: Shape_068
+    2100024: Shape_067
+    2100026: Shape_066
+    2100028: Shape_065
+    2100030: Shape_064
+    2100032: Shape_063
+    2100034: Shape_062
+    2100036: Shape_061
+    2100038: Shape_060
+    2100040: Shape_059
+    2100042: Shape_058
+    2100044: Shape_057
+    2100046: Shape_056
+    2100048: Shape_055
+    2100050: Shape_054
+    2100052: Shape_053
+    2100054: Shape_052
+    2100056: Shape_051
+    2100058: Shape_050
+    2100060: Shape_049
+    2100062: Shape_048
+    2100064: Shape_047
+    2100066: Shape_046
+    2100068: Shape_045
+    2100070: Shape_044
+    2100072: Shape_043
+    2100074: Shape_042
+    2100076: Shape_041
+    2100078: Shape_040
+    2100080: Shape_039
+    2100082: Shape_038
+    2100084: Shape_037
+    2100086: Shape_036
+    2100088: Shape_035
+    2100090: Shape_034
+    2100092: Shape_033
+    2100094: Shape_032
+    2100096: Shape_031
+    2100098: Shape_030
+    2100100: Shape_029
+    2100102: Shape_028
+    2100104: Shape_027
+    2100106: Shape_026
+    2100108: Shape_025
+    2100110: Shape_024
+    2100112: Shape_023
+    2100114: Shape_022
+    2100116: Shape_021
+    2100118: Shape_020
+    2100120: Shape_019
+    2100122: Shape_018
+    2100124: Shape_017
+    2100126: Shape_016
+    2100128: Shape_015
+    2100130: Shape_014
+    2100132: Shape_013
+    2100134: Shape_012
+    2100136: Shape_011
+    2100138: Shape_010
+    2100140: Shape_009
+    2100142: Shape_008
+    2100144: Shape_007
+    2100146: Shape_006
+    2100148: Shape_005
+    2100150: Shape_004
+    2100152: Shape_003
+    2100154: Shape_002
+    2100156: Shape_001
+    2100158: Shape
+    2300000: _0030517_001
+    3300000: _0030517_001
+    4300000: _0030517_001
     9500000: //RootNode
+    10800000: Lamp
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -51,13 +132,18 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importVisibility: 1
     importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -67,9 +153,11 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 4
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -80,7 +168,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1

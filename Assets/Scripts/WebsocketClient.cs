@@ -3,7 +3,6 @@ using WebSocketSharp;
 using System;
 using System.Collections.Generic;
 
-
 public class WebsocketClient : MonoBehaviour {
 
     private WebSocket ws;
@@ -20,8 +19,12 @@ public class WebsocketClient : MonoBehaviour {
         ws.OnOpen += OnOpenHandler;
         ws.OnMessage += OnMessageHandler;
         ws.OnClose += OnCloseHandler;
+        ws.OnError += (sender, e) => {
+            Debug.Log(e.Message);
+        };
 
         Debug.Log("Connecting to websocket");
+        
         ws.ConnectAsync();
     }
 
@@ -39,19 +42,17 @@ public class WebsocketClient : MonoBehaviour {
     public void Subscribe(string topic, string type, int throttle_rate) {
         string msg = "{\"op\":\"subscribe\",\"id\":\"subscribe:/" + topic + ":" + counter + "\",\"type\":\"" + type + "\",\"topic\":\"/" + topic + "\",\"throttle_rate\":" + throttle_rate.ToString() + ",\"queue_length\":0}";
         Debug.Log(msg);
-        ws.Send(msg);
+        ws.SendAsync(msg, OnSendComplete);
         counter++;
     }
 
     public void Unsubscribe(string topic) {
         string msg = "{\"op\":\"unsubscribe\",\"id\":\"unsubscribe:/" + topic + ":" + counter + "\",\"topic\":\"" + topic + "\"}";
-        Debug.Log(msg);
         ws.SendAsync(msg, OnSendComplete);
     }
 
     public void Advertise(string topic, string type) {
         string msg = "{\"op\":\"advertise\",\"id\":\"advertise:/" + topic + ":" + counter + "\",\"type\":\"" + type + "\",\"topic\":\"/" + topic + "\",\"latch\":false,\"queue_size\":0}";
-        Debug.Log(msg);
         ws.SendAsync(msg, OnSendComplete);
         counter++;
 
@@ -74,7 +75,6 @@ public class WebsocketClient : MonoBehaviour {
         data = data.Substring(4);
         data = data.Split('"')[0];
         messages[topic] = data;
-        //Debug.Log(data);
     }
 
     private void OnOpenHandler(object sender, System.EventArgs e) {

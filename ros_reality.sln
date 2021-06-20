@@ -1,29 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ros_reality", "Assembly-CSharp.csproj", "{07848C31-274A-F2A1-9AC8-DC2D0B95ED03}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ros_reality", "Assembly-CSharp-Editor.csproj", "{9A20CF2C-F071-A3AF-A830-46EBE676D794}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{318c8407-4a27-a1f2-9ac8-dc2d0b95ed03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{07848C31-274A-F2A1-9AC8-DC2D0B95ED03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{07848C31-274A-F2A1-9AC8-DC2D0B95ED03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07848C31-274A-F2A1-9AC8-DC2D0B95ED03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{07848C31-274A-F2A1-9AC8-DC2D0B95ED03}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9A20CF2C-F071-A3AF-A830-46EBE676D794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9A20CF2C-F071-A3AF-A830-46EBE676D794}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9A20CF2C-F071-A3AF-A830-46EBE676D794}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9A20CF2C-F071-A3AF-A830-46EBE676D794}.Release|Any CPU.Build.0 = Release|Any CPU
+		{318c8407-4a27-a1f2-9ac8-dc2d0b95ed03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{318c8407-4a27-a1f2-9ac8-dc2d0b95ed03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

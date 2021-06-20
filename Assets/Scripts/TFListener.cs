@@ -1,41 +1,53 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Linq;
+using System.Threading;
 
 public class TFListener : MonoBehaviour
 {
 	private WebsocketClient wsc;
 	public string topic = "ros_unity";
-
+	public Transform root;
 	public float scale = 1f;
 
 	// Use this for initialization
 	void Start ()
 	{
         wsc = GameObject.Find("WebsocketClient").GetComponent<WebsocketClient>();
-		wsc.Subscribe (topic, "std_msgs/String", 0);
+        Subscribe();
+	}
+
+	void Subscribe()
+	{
+		wsc.Subscribe(topic, "std_msgs/String", 0);
 	}
 
 	void Update () 
 	{
+		if (!wsc.messages.Keys.Contains(topic))
+		{
+			Subscribe();
+			return;
+		}
+		
 		string message = wsc.messages[topic]; //get newest robot state data (from transform)
+		//Debug.Log(message);
 		string[] tfElements = message.Split (';'); //split the message into each joint/link data pair
         foreach (string tfElement in tfElements) {
-            //Debug.Log(tfElement);
-            //continue;
+	        //continue;
 			string[] dataPair = tfElement.Split (':');
 			GameObject cur = GameObject.Find (dataPair [0] + "Pivot"); // replace with hashmap
 			if (cur != null) {
-
 				string[] tmp = dataPair [1].Split ('^'); //seperate position from rotation data
 				string pos = tmp [0]; //position data
 				string rot = tmp [1]; //rotation data
 				pos = pos.Substring (1, pos.Length - 2);
 				rot = rot.Substring (1, rot.Length - 2);
                 string[] poses = pos.Split (',');
-				float pos_x = float.Parse (poses [0]); //x position
-				float pos_y = float.Parse (poses [1]); //y position
-				float pos_z = float.Parse (poses [2]); //z position
+				float pos_x = float.Parse (poses [0]) - root.position.x; //x position
+				float pos_y = float.Parse (poses [1]) - root.position.z; //y position
+				float pos_z = float.Parse (poses [2]) + root.position.y; //z position
 
 
                 Vector3 curPos = new Vector3 (pos_x, pos_y, pos_z); //save current position
